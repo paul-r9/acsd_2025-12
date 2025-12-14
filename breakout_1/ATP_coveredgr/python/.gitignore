@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+
+bin/
+build/
+.approval_tests_temp/
+
+pip-log.txt
+
+# Approval Test received files typically indicate a test failure and shouldn't be committed
+*.received.txt
