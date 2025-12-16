@@ -1,3 +1,4 @@
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -11,16 +12,14 @@ class WordProblemSolverTest {
 
     @Test
     void testJustANumber() {
-        assertEquals(5, solver.solve("What is 5?"));
+        assertEquals(524367, solver.solve("What is 524,367?"));
     }
 
-    @Disabled("Remove to run test")
     @Test
     void testSingleAddition1() {
         assertEquals(2, solver.solve("What is 1 plus 1?"));
     }
 
-    @Disabled("Remove to run test")
     @Test
     void testSingleAddition2() {
         assertEquals(55, solver.solve("What is 53 plus 2?"));
