@@ -12,7 +12,7 @@ public class GildedRoseTest {
     public static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
 
     private Item[] createItemArray(String itemName, int sellIn, int quality) {
-        return new Item[] { new Item(itemName, sellIn, quality) };
+        return new Item[]{new Item(itemName, sellIn, quality)};
     }
 
     @Test
@@ -43,7 +43,7 @@ public class GildedRoseTest {
     }
 
     @ParameterizedTest(name = "{0} item SellIn decreases each update")
-    @CsvSource({"generic item", "Aged Brie", BACKSTAGE_PASS})
+    @CsvSource({"generic item", "Aged Brie", BACKSTAGE_PASS, "ConjuredItem"})
     void NonLegendaryItem_SellInDate_Decreases(String itemName) {
         GildedRose sut = new GildedRose(createItemArray(itemName, 8, 10));
         sut.updateQuality();
@@ -146,8 +146,8 @@ public class GildedRoseTest {
 
     @Test
     void ShopContainsMultipleItems() {
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 0, 80),
-                                    new Item("generic item", 10, 5)};
+        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+                new Item("generic item", 10, 5)};
         GildedRose sut = new GildedRose(items);
 
         sut.updateQuality();
@@ -160,4 +160,22 @@ public class GildedRoseTest {
 
     //TODO: NEW BEHAVIOR
     // conjured items
+
+    @Test
+    void conjuredItemQualityDecrementsBy2() {
+        GildedRose sut = new GildedRose(createItemArray("ConjuredItem", 10, 5));
+
+        sut.updateQuality();
+
+        assertEquals(3, sut.items[0].quality);
+    }
+
+    @Test
+    void conjuredItemAfterSellInDate() {
+        GildedRose sut = new GildedRose(createItemArray("ConjuredItem", 0, 10));
+
+        sut.updateQuality();
+
+        assertEquals(6, sut.items[0].quality);
+    }
 }
