@@ -19,7 +19,16 @@ public class SpaceportDepartureBoard {
     }
 
     private void sortLaunches() {
-        throw new UnsupportedOperationException("TODO - implement the sorting logic!");
+        // sort the launch list and store in a copy and return that copy
+        Collections.sort(launchList, (l1, l2) -> {
+            int destinationComparison = l1.getDestination().compareTo(l2.getDestination());
+            if (destinationComparison != 0) {
+                return destinationComparison;
+            } else {
+                return l1.getTime().compareTo(l2.getTime());
+            }
+        });
+        
     }
 
     private void addNewLaunch(LaunchInfo launchInfo) {
