@@ -11,20 +11,41 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            if (doesItemGetWorseWithAge(item)) {
-                updateItemThatHGetsWorseWithAGe(item);
+            if (isConjured(item)) {
+                updateConjuredItem(item);
             } else {
-                updateBackstagePass(item);
-            }
+                if (doesItemGetWorseWithAge(item)) {
+                    updateItemThatHGetsWorseWithAGe(item);
+                } else {
+                    updateBackstagePass(item);
+                }
 
-            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                item.sellIn = item.sellIn - 1;
-            }
+                if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                    decrementSellIm(item);
+                }
 
-            if (item.sellIn < 0) {
-                updatePastSellIn(item);
+                if (item.sellIn < 0) {
+                    updatePastSellIn(item);
+                }
             }
         }
+    }
+
+    private static void updateConjuredItem(Item item) {
+        decrementSellIm(item);
+        item.quality -= 2;
+
+        if(item.sellIn <= 0) {
+            item.quality -= 2;
+        }
+    }
+
+    private static void decrementSellIm(Item item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
+    private boolean isConjured(Item item) {
+        return(item.name.contains("Conjured"));
     }
 
     private static boolean doesItemGetWorseWithAge(Item item) {

@@ -40,5 +40,10 @@ public class StepDefinitions {
     public void i_should_get_item_with_quality_of(Integer expected) {
         assertEquals(expected.intValue(), app.items[0].quality);
     }
+
+    @Then("the item name is unchanged {string}")
+    public void the_item_name_is_unchanged(String expected) {
+        assertEquals(expected, app.items[0].name);
+    }
 }
 
