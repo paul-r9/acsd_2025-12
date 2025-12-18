@@ -9,11 +9,6 @@ public class LaunchInfoProviderStub_ForUniqueDestinations implements ISpacelineL
         return List.of(
                 createLaunchInfo("Moon"),
                 createLaunchInfo("Mars"));
-
-//        List<LaunchInfo> launches = new ArrayList<>();
-//        launches.add(createLaunchInfo("Moon"));
-//        launches.add(createLaunchInfo("Mars"));
-//        return launches;
     }
 
     private LaunchInfo createLaunchInfo(String destination) {
